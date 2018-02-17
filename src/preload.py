@@ -19,15 +19,16 @@ def getMongoUri():
     plaint = decrypt(key, ciphert).decode("utf8")
     return plaint
 
-uri = getMongoUri()
-client = pymongo.MongoClient(uri)
-db = client.sugarhill
-configColl = db.config
-config = configColl.find_one({
-})
-if not config:
-    print("Could not see the 'Config' collection")
-    sys.exit(2)
-config.pop("_id")
-with open("./config.json", "w") as f:
-    f.write(json.dumps(config))
+if __name__ == "__main__":
+    uri = getMongoUri()
+    client = pymongo.MongoClient(uri)
+    db = client.sugarhill
+    configColl = db.config
+    config = configColl.find_one({
+    })
+    if not config:
+        print("Could not see the 'Config' collection")
+        sys.exit(2)
+    config.pop("_id")
+    with open("./config.json", "w") as f:
+        f.write(json.dumps(config))

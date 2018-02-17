@@ -1,5 +1,5 @@
 import json
-startup_extensions = ["clans"]
+startup_extensions = ["clans", "errors", "clubinfo", "clubuser", "clubadmin"]
 
 with open("./config.json") as f:
     config = json.loads(f.read())
@@ -23,4 +23,4 @@ if __name__ == "__main__":
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
             print('Failed to load extension {}\n{}'.format(extension, exc))
-            bot.run(config["token"])
+    bot.run(config["token"])
